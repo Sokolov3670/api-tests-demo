@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>Demo Login</title></head>
+<body>
+  <div id="login-form">
+    <h2>Sign in</h2>
+    <input data-test="email" type="email" placeholder="Email address">
+    <input data-test="password" type="password" placeholder="Password">
+    <button data-test="login-submit">Login</button>
+    <h3 data-test="error" hidden></h3>
+  </div>
+  <h1 data-test="page-title" hidden>My account</h1>
+  <script>
+    const VALID = { "customer@test.com": "welcome01" };
+    document.querySelector('[data-test="login-submit"]').onclick = () => {
+      const email = document.querySelector('[data-test="email"]').value;
+      const pass  = document.querySelector('[data-test="password"]').value;
+      const err = document.querySelector('[data-test="error"]');
+      if (VALID[email] === pass) {
+        document.getElementById('login-form').hidden = true;
+        document.querySelector('[data-test="page-title"]').hidden = false;
+      } else {
+        err.hidden = false;
+        err.textContent = "Invalid email or password";
+      }
+    };
+  </script>
+</body>
+</html>
